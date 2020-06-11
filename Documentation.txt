@@ -1,0 +1,47 @@
+Revochat Terminal Messaging App:
+
+Prompt --> Make an app using Python that allows you to message other users using any type of terminal (Linux, UNIX, Command Prompt, etc)
+Note: Use Firebase to store User Data such as Credentials and Messages because the json file is only changed for one particular user, but not all
+We need the json file to write data in the JSON format to Firebase Database
+
+Steps:
+
+1. Register
+    --> Collect User Credentials, and store them in the Firebase Realtime Database
+    --> Make sure that the username and password fields are not left empty and they are filled with some text
+    --> Make sure that the username is an email, i.e contains @ and .com
+    --> Password should be atleast 6 digits long
+    --> Store User Credentials (Name, Username, and Password) in Firebase
+    --> Direct to Login
+
+2. Login 
+    --> Login to account
+    --> Check whether the entered login credentials match the registered credentials, which is returned from the Firebase tag
+    --> If yes, direct the user to the Send Messages screen, or else redirect to login
+
+3. Send Messages
+    --> Show all the Previous Messages (Get from the messages tag stored in Firebase)
+    --> Prompt the user to send a message while True, so that the loop is undending unless the user exits
+    --> Press y for reload, and n for continue sending message
+    --> If not, the user can press e for exit and exit Revochat
+
+Functions Used:
+
+Universal Functions:
+1. getCommand() --> For getting user input
+2. Welcome() --> Welcome the User to Revochat
+3. writeData() --> Writes the data to a tag in Firebase Database
+4. readData() --> Reads the data from a tag in Firebase Database
+
+Specific Functions:
+5. Register() --> Register
+6. login() --> To login
+7. SendMessages() --> Send Messages and exit Revochat
+8. LoadMessages() --> Load Messages everytime the user either logs in or requests to see all the past messages
+
+JSON File (chat.json):
+A file used to store data in the JSON format that Firebase uses to store entries
+
+Database:
+Uses firebase PyPI package to establish a connection to the Revochat application in Firebase Realtime Database
+

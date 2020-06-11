@@ -1,0 +1,17 @@
+Minimum Requirements:
+
+firebase>=3.0.0
+ --> pip install firebase==3.0.0
+
+json
+ --> Already in the Python Installation folder
+
+time
+ --> Already in the Python Installation folder
+
+sys
+ --> Already in the Python Installation folder
+
+pycryptodome>=3.4.3
+ --> pip install pycryptodome==3.4.3
+
