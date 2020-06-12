@@ -6,6 +6,7 @@
  - --> No SSH required for connections
  - --> Use of Firebase DB for lightning fast queries
  - --> Very few packages to install/set up for cloning & running the code
+ - --> Compatible will all types of terminals - Linux, UNIX, and Command Prompt
 
 ## Documentation
 Please refer to Documentation.txt for the Revochat documentation

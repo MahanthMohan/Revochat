@@ -7,7 +7,7 @@ class Revochat:
 
 # <----Universal Functions---->
     def getCommand(self):
-        command = input("Are you a New User(n) or Existing User(e): )
+        command = input("Are you a New User(n) or Existing User(e): ")
         if command == "n":
             Revochat.Register()
         elif command == "e":
