@@ -4,13 +4,13 @@ firebase>=3.0.0
  --> pip install firebase==3.0.0
 
 json
- --> Already in the Python Installation folder
+ --> Comes with the Python Package
 
 time
- --> Already in the Python Installation folder
+ --> Comes with the Python Package
 
 sys
- --> Already in the Python Installation folder
+ --> Comes with the Python Package
 
 pycryptodome>=3.4.3
  --> pip install pycryptodome==3.4.3
