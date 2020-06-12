@@ -7,7 +7,7 @@ class Revochat:
 
 # <----Universal Functions---->
     def getCommand(self):
-        command = input("Are you a New User(n) or Existing User(e): " + "\n")
+        command = input("Are you a New User(n) or Existing User(e): )
         if command == "n":
             Revochat.Register()
         elif command == "e":
@@ -48,7 +48,7 @@ class Revochat:
 
         if len(username) or len(password) == 0:
             print("**Enter a valid username and password, one that is not left blank/empty**" + "\n")
-            print("--------------->> You will be redirected to Register Account--------->>" + "\n")
+            print("--------------->> You will be redirected to Register Account --------->>" + "\n")
             time.sleep(1)
             Revochat.Register()
 

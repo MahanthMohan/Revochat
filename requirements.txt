@@ -1,17 +1,15 @@
-Minimum Requirements:
+Requirements:
 
 firebase>=3.0.0
  --> pip install firebase==3.0.0
 
-json
- --> Comes with the Python Package
+python_jwt
+ --> pip install python_jwt
 
-time
- --> Comes with the Python Package
-
-sys
- --> Comes with the Python Package
+gcloud
+ --> pip install gcloud
 
 pycryptodome>=3.4.3
  --> pip install pycryptodome==3.4.3
+ --> Note: You may need to navigate to the python site packages folder and change the name of the folder "crypto" to "Crypto"
 
