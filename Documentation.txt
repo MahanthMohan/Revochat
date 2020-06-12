@@ -10,7 +10,6 @@ Steps:
     --> Collect User Credentials, and store them in the Firebase Realtime Database
     --> Make sure that the username and password fields are not left empty and they are filled with some text
     --> Make sure that the username is an email, i.e contains @ and .com
-    --> Password should be atleast 6 digits long
     --> Store User Credentials (Name, Username, and Password) in Firebase
     --> Direct to Login
 
@@ -32,6 +31,7 @@ Universal Functions:
 2. Welcome() --> Welcome the User to Revochat
 3. writeData() --> Writes the data to a tag in Firebase Database
 4. readData() --> Reads the data from a tag in Firebase Database
+5. CheckCreds() --> Check the credentials collected from the user during the registration process
 
 Specific Functions:
 5. Register() --> Register

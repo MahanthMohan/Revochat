@@ -12,7 +12,7 @@ def getCommand():
 def Welcome():
     print("<<--------------------------  Welcome to RevoChat, A Terminal Chat App -------------------------->>" + "\n")
 
-def writeData(entry, tag, location):
+def writeData(entry, tag):
     contents = []
     contents.append(entry)
     database.post('/Chat/{}'.format(tag), contents)
@@ -22,27 +22,40 @@ def readData(tag):
     return data
 
 def CheckCreds(name, username, password):
-    if len(username) or len(password) == 0:
-        print("**Enter a valid username and password, one that is not left blank/empty**" + "\n")
+    if len(username) == 0:
+        print("**Enter a valid username, one that is not left blank/empty**" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
 
-    if username.find("@") or username.find(".com") == -1:
+    if len(password) == 0:
+        print("**Enter a valid password, one that is not left blank/empty**" + "\n")
+        print("--------------->> You will be redirected to Register Account --------->>" + "\n")
+        Register()
+
+    if username.find("@") == -1:
         print("The username must be an email" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
-    
-    elif len(password) < 6:
-        print("Your password is too weak! (length < 6 characters)")
+
+    if username.find(".com") == -1:
+        print("The username must be an email" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
+        Register()
 
     else:
         print("**Account successfully created**")
         print("You will be redirected to the login screen")
-        writeData(name, "names", 2)
-        writeData(username, "Usernames", 0)
-        writeData(password, "Passwords", 1)
+        writeData(name, "Names")
+        writeData(username, "Usernames")
+        writeData(password, "Passwords")
         login()
+
+def LoadMessages():
+    print("<<--------------------------- Your Messages --------------------------->>")
+    messages = readData("messages")
+    for message in messages:
+        print(message)
+        print("---------------------------------------------------------------------------")
 
 
 # <----Universal Functions---->
@@ -52,7 +65,7 @@ def Register():
     print("<<-------------------- Register Account ---------------------->>")
     print("As this is just a simple app for testing purposes, do not use actual credentials for registration" + "\n")
     name = str(input("Your Name: "))
-    username = str(input("Set your username: "))
+    username = input("Set your username: ")
     password = input("Set a password: ")
     CheckCreds(name, username, password)
 
@@ -90,13 +103,6 @@ def SendMessages():
             elif command == "e":
                 print("**Thanks for using Revochat, hope to see you later!**") 
                 sys.exit()
-
-def LoadMessages():
-    print("<<--------------------------- Your Messages --------------------------->>")
-    messages = readData("messages")
-    for message in messages:
-        print(message)
-        print("---------------------------------------------------------------------------")
 
 
 database = firebase.FirebaseApplication("https://revochat-78efd.firebaseio.com/", None)
