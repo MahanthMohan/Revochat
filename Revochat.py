@@ -79,7 +79,6 @@ def login():
     password = input("Enter your password: ")
     usernames = str(readData('Usernames'))
     passwords = str(readData('Passwords'))
-    print(usernames, passwords)
     if usernames.find(username) and passwords.find(password):
         print("**You have successfully logged into your account!**")
         print("You can now begin sending messages to your friends!")
