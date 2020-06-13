@@ -1,8 +1,7 @@
 Revochat Terminal Messaging App:
 
 Prompt --> Make an app using Python that allows you to message other users using any type of terminal (Linux, UNIX, Command Prompt, etc)
-Note: Use Firebase to store User Data such as Credentials and Messages because the json file is only changed for one particular user, but not all
-We need the json file to write data in the JSON format to Firebase Database
+Note: Use Firebase to store User Data such as Credentials and Messages as a json file cannot show changes for multiple users
 
 Steps:
 
@@ -31,16 +30,12 @@ Universal Functions:
 2. Welcome() --> Welcome the User to Revochat
 3. writeData() --> Writes the data to a tag in Firebase Database
 4. readData() --> Reads the data from a tag in Firebase Database
-5. CheckCreds() --> Check the credentials collected from the user during the registration process
 
 Specific Functions:
 5. Register() --> Register
 6. login() --> To login
 7. SendMessages() --> Send Messages and exit Revochat
 8. LoadMessages() --> Load Messages everytime the user either logs in or requests to see all the past messages
-
-JSON File (chat.json):
-A file used to store data in the JSON format that Firebase uses to store entries
 
 Database:
 Uses firebase PyPI package to establish a connection to the Revochat application in Firebase Realtime Database

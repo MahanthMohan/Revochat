@@ -2,6 +2,7 @@ from firebase import firebase
 import sys
 
 # <----Universal Functions---->
+
 def getCommand():
     command = input("Are you a New User(n) or Existing User(e): ")
     if command == "n":
@@ -18,10 +19,24 @@ def writeData(entry, tag):
     database.post('/Chat/{}'.format(tag), contents)
 
 def readData(tag):
-    data = database.get('Chat/{}'.format(tag), None)
+    data = database.get('/Chat/{}'.format(tag), None)
     return data
 
-def CheckCreds(name, username, password):
+def LoadMessages():
+    print("<<--------------------------- Your Messages --------------------------->>")
+    messages = readData('Messages')
+    print(messages)
+    print("---------------------------------------------------------------------------")
+
+# <----Universal Functions---->
+
+def Register():
+    Welcome()
+    print("<<-------------------- Register Account ---------------------->>")
+    print("As this is just a simple app for testing purposes, do not use actual credentials for registration" + "\n")
+    name = str(input("Your Name: "))
+    username = input("Set your username: ")
+    password = input("Set a password: ")
     if len(username) == 0:
         print("**Enter a valid username, one that is not left blank/empty**" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
@@ -50,33 +65,14 @@ def CheckCreds(name, username, password):
         writeData(password, "Passwords")
         login()
 
-def LoadMessages():
-    print("<<--------------------------- Your Messages --------------------------->>")
-    messages = readData("messages")
-    for message in messages:
-        print(message)
-        print("---------------------------------------------------------------------------")
-
-
-# <----Universal Functions---->
-
-def Register():
-    Welcome()
-    print("<<-------------------- Register Account ---------------------->>")
-    print("As this is just a simple app for testing purposes, do not use actual credentials for registration" + "\n")
-    name = str(input("Your Name: "))
-    username = input("Set your username: ")
-    password = input("Set a password: ")
-    CheckCreds(name, username, password)
-
 def login():
     Welcome()
     print("<<-------------------- Login Screen ---------------------->>")
     username = input("Enter your username: ")
     password = input("Enter your password: ")
-    usernames = readData("Usernames")
-    passwords = readData("Passwords")
-    if username in usernames and password in passwords:
+    usernames = str(readData('Usernames'))
+    passwords = str(readData('Passwords'))
+    if usernames.find(username) and passwords.find(password):
         print("**You have successfully logged into your account!**")
         print("You can now begin sending messages to your friends!")
         LoadMessages()
@@ -86,23 +82,22 @@ def login():
         login()
 
 def SendMessages():
-    print("<<-------------------- Revo Messages ---------------------->>")
     sender = str(input("Your Name: "))
-    recipient = input("Name of the Recipient: ")
-    while True:
-        message = input("Enter a message: ")
-        if sender and recipient in readData("names"):
-            context = "{} --> {}".format(sender, recipient )
-            message = context + "\n" + message
-            writeData(message, "messages", 4)
-            command = input("Load Messages?(y/N) or exit(e): ")
-            if command == "y":
-                LoadMessages()
-            elif command == "N":
-                SendMessages()
-            elif command == "e":
-                print("**Thanks for using Revochat, hope to see you later!**") 
-                sys.exit()
+    reciever = str(input("Name of the Reciever: "))
+    names = str(readData('Names'))
+    message = input("Message: ")
+    if names.find(sender) and names.find('reciever'):
+        context = "({} --> {}) ".format(sender, reciever)
+        message = context + message
+        writeData(message, "Messages")
+        command = input("Load Messages?(y/N) or exit(e): ")
+        if command == "y":
+            LoadMessages()
+        elif command == "N":
+            SendMessages()
+        elif command == "e":
+            print("**Thanks for using Revochat, hope to see you later!**") 
+            sys.exit()
 
 
 database = firebase.FirebaseApplication("https://revochat-78efd.firebaseio.com/", None)
