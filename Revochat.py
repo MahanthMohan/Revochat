@@ -88,9 +88,8 @@ def SendMessages(max):
     reciever = str(input("Name of the Reciever: "))
     names = str(readData('Names'))
     message = input("Message: ")
-    i = 0
-    while i < max:
-        if names.find(sender) and names.find('reciever'):
+    for i in range(0, max):
+        if names.find(sender) and names.find(reciever):
             context = "({} --> {}) ".format(sender, reciever)
             message = context + message
             writeData(message, "Messages")
@@ -102,7 +101,6 @@ def SendMessages(max):
             elif command == "e":
                 print("**Thanks for using Revochat, hope to see you later!**") 
                 sys.exit()
-        i = i + 1
  
 
 database = firebase.FirebaseApplication("https://revochat-78efd.firebaseio.com/", None)
