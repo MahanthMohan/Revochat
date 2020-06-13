@@ -74,36 +74,36 @@ def login():
     password = input("Enter your password: ")
     usernames = str(readData('Usernames'))
     passwords = str(readData('Passwords'))
-    try:
-        if usernames.find(username) and passwords.find(password):
-            print("**You have successfully logged into your account!**")
-            print("You can now begin sending messages to your friends!")
-            LoadMessages()
-            SendMessages()
-        else:
-            print("Your login credentials do not match the registered credentials")
-            login()
-    except:
-        print("**Enter a valid username and password**")
+    if usernames.find(username) and passwords.find(password):
+        print("**You have successfully logged into your account!**")
+        print("You can now begin sending messages to your friends!")
+        LoadMessages()
+        SendMessages(10) # You can add a max messages parameter to the function (Default -> 10)
+    else:
+        print("Your login credentials do not match the registered credentials")
+        login()
 
-def SendMessages():
+def SendMessages(max):
     sender = str(input("Your Name: "))
     reciever = str(input("Name of the Reciever: "))
     names = str(readData('Names'))
     message = input("Message: ")
-    if names.find(sender) and names.find('reciever'):
-        context = "({} --> {}) ".format(sender, reciever)
-        message = context + message
-        writeData(message, "Messages")
-        command = input("Load Messages?(y/N) or exit(e): ")
-        if command == "y":
-            LoadMessages()
-        elif command == "N":
-            SendMessages()
-        elif command == "e":
-            print("**Thanks for using Revochat, hope to see you later!**") 
-            sys.exit()
-
+    i = 0
+    while i < max:
+        if names.find(sender) and names.find('reciever'):
+            context = "({} --> {}) ".format(sender, reciever)
+            message = context + message
+            writeData(message, "Messages")
+            command = input("Load Messages?(y/N) or exit(e): ")
+            if command == "y":
+                LoadMessages()
+            elif command == "N":
+                SendMessages()
+            elif command == "e":
+                print("**Thanks for using Revochat, hope to see you later!**") 
+                sys.exit()
+        i = i + 1
+ 
 
 database = firebase.FirebaseApplication("https://revochat-78efd.firebaseio.com/", None)
 getCommand()
