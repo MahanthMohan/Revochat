@@ -58,6 +58,11 @@ def Register():
         print("The username must be an email" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
+    
+    if len(password) < 6:
+        print("Your password is too weak")
+        print("--------------->> You will be redirected to Register Account --------->>" + "\n")
+        Register()
 
     else:
         print("**Account successfully created**")
@@ -74,6 +79,7 @@ def login():
     password = input("Enter your password: ")
     usernames = str(readData('Usernames'))
     passwords = str(readData('Passwords'))
+    print(usernames, passwords)
     if usernames.find(username) and passwords.find(password):
         print("**You have successfully logged into your account!**")
         print("You can now begin sending messages to your friends!")
