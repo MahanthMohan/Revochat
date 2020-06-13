@@ -24,9 +24,11 @@ def readData(tag):
 
 def LoadMessages():
     print("<<--------------------------- Your Messages --------------------------->>")
-    messages = readData('Messages')
-    print(messages)
-    print("---------------------------------------------------------------------------")
+    messages = str(readData('Messages'))
+    messagelist = messages.split(",")
+    for message in messagelist:
+        print(message)
+        print("---------------------------------------------------------------------------")
 
 # <----Universal Functions---->
 
@@ -72,14 +74,17 @@ def login():
     password = input("Enter your password: ")
     usernames = str(readData('Usernames'))
     passwords = str(readData('Passwords'))
-    if usernames.find(username) and passwords.find(password):
-        print("**You have successfully logged into your account!**")
-        print("You can now begin sending messages to your friends!")
-        LoadMessages()
-        SendMessages()
-    else:
-        print("Your login credentials do not match the registered credentials")
-        login()
+    try:
+        if usernames.find(username) and passwords.find(password):
+            print("**You have successfully logged into your account!**")
+            print("You can now begin sending messages to your friends!")
+            LoadMessages()
+            SendMessages()
+        else:
+            print("Your login credentials do not match the registered credentials")
+            login()
+    except:
+        print("**Enter a valid username and password**")
 
 def SendMessages():
     sender = str(input("Your Name: "))
