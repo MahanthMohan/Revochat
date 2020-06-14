@@ -75,16 +75,31 @@ def login():
     print("<<-------------------- Login Screen ---------------------->>")
     username = input("Enter your username: ")
     password = input("Enter your password: ")
-    usernames = str(readData('Usernames'))
-    passwords = str(readData('Passwords'))
-    if usernames.find(username) and passwords.find(password):
-        print("**You have successfully logged into your account!**")
-        print("You can now begin sending messages to your friends!")
-        LoadMessages()
-        SendMessages(10) # You can add a max messages parameter to the function (Default -> 10)
-    else:
-        print("Your login credentials do not match the registered credentials")
-        login()
+    username_list = list(readData('Usernames').items())
+    password_list = list(readData('Passwords').items())
+    usernames = []
+    passwords = []
+    for i in range (0, len(username_list)):
+        username_list[i] = list(username_list[i])
+        username_list[i] = username_list[i][1]
+        usernames.append(username_list[i][0])
+        
+    for n in range (0, len(password_list)):
+        password_list[n] = list(password_list[n])
+        password_list[n] = password_list[n][1]
+        passwords.append(password_list[n][0])
+
+    for i in range (0, len(usernames)):
+        for n in range (0, len(passwords)):
+            if usernames[i] == username and passwords[n] == password:
+                print("**You have successfully logged into your account!**")
+                print("You can now begin sending messages to your friends!")
+                LoadMessages()
+                SendMessages(10) # You can add a max messages parameter to the function (Default -> 10)
+            else:
+                print("Your login credentials do not match the registered credentials")
+                sys.exit()
+                
 
 def SendMessages(max):
     sender = str(input("Your Name: "))
