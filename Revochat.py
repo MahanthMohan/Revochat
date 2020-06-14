@@ -92,10 +92,10 @@ def SendMessages(max):
     sender = str(input("Your Name: "))
     reciever = str(input("Name of the Reciever: "))
     names = str(readData('Names'))
-    message = input("Message: ")
+    context = "({} --> {}) ".format(sender, reciever)
     for i in range(0, max):
         if names.find(sender) and names.find(reciever):
-            context = "({} --> {}) ".format(sender, reciever)
+            message = input("Message: ")
             message = context + message
             writeData(message, "Messages")
             command = input("Load Messages?(y/N) or exit(e): ")
