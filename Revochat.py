@@ -39,22 +39,12 @@ def Register():
     name = str(input("Your Name: "))
     username = input("Set your username: ")
     password = input("Set a password: ")
-    if len(username) == 0:
-        print("**Enter a valid username, one that is not left blank/empty**" + "\n")
+    if len(username) == 0 and len(password) == 0:
+        print("**Enter a valid username and password, one that is not left blank/empty**" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
 
-    if len(password) == 0:
-        print("**Enter a valid password, one that is not left blank/empty**" + "\n")
-        print("--------------->> You will be redirected to Register Account --------->>" + "\n")
-        Register()
-
-    if username.find("@") == -1:
-        print("The username must be an email" + "\n")
-        print("--------------->> You will be redirected to Register Account --------->>" + "\n")
-        Register()
-
-    if username.find(".com") == -1:
+    if username.find("@") == -1 and username.find(".com") == -1:
         print("The username must be an email" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
