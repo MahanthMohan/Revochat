@@ -9,6 +9,8 @@ def getCommand():
         Register()
     elif command == "e":
         login()
+    else:
+        getCommand()
 
 def Welcome():
     print("<<--------------------------  Welcome to RevoChat, A Terminal Chat App -------------------------->>" + "\n")
@@ -35,17 +37,25 @@ def getCreds():
     password_list = list(readData('Passwords').items())
     usernames = []
     passwords = []
-    for i in range (0, len(username_list)):
+    for i in range (len(username_list)):
         username_list[i] = list(username_list[i])
         username_list[i] = username_list[i][1]
         usernames.append(username_list[i][0])
 
-    for n in range (0, len(password_list)):
+    for n in range (len(password_list)):
         password_list[n] = list(password_list[n])
         password_list[n] = password_list[n][1]
         passwords.append(password_list[n][0])
-        
     return [usernames, passwords]
+
+def getNames():
+    names_list = list(readData('Names').items())
+    names = []
+    for i in range (len(names_list)):
+        username_list[i] = list(names_list[i])
+        username_list[i] = names_list[i][1]
+        names.append(names_list[i][0])
+    return names
 
 # <----Universal Functions---->
 
@@ -95,36 +105,36 @@ def login():
     usernames = getCreds()[0]
     passwords = getCreds()[1]
 
-    for i in range (0, len(usernames)):
-        for n in range (0, len(passwords)):
-            if usernames[i] == username and passwords[n] == password:
-                print("**You have successfully logged into your account!**")
-                print("You can now begin sending messages to your friends!")
-                LoadMessages()
-                SendMessages(10) # You can add a max messages parameter to the function (Default -> 10)
-            else:
-                print("Your login credentials do not match the registered credentials")
-                sys.exit()
+    if username in usernames and password in passwords:
+        print("**You have successfully logged into your account!**")
+        print("You can now begin sending messages to your friends!")
+        LoadMessages()
+        SendMessages(10) # You can add a max messages parameter to the function (Default -> 10)
+    else:
+        print("**Your login credentials do not match the registered credentials**")
+        sys.exit()
 
 
 def SendMessages(max):
     sender = str(input("Your Name: "))
-    reciever = str(input("Name of the Reciever: "))
-    names = str(readData('Names'))
-    context = "({} --> {}) ".format(sender, reciever)
-    for i in range(0, max):
-        if names.find(sender) and names.find(reciever):
-            message = input("Message: ")
-            message = context + message
-            writeData(message, "Messages")
-            command = input("Load Messages?(y/N) or exit(e): ")
-            if command == "y":
-                LoadMessages()
-            elif command == "N":
-                SendMessages()
-            elif command == "e":
-                print("**Thanks for using Revochat, hope to see you later!**") 
-                sys.exit()
+    names = getNames()
+    for i in range(max):
+        if sender in names:
+            reciever = str(input("Name of the Reciever: "))
+            names = getNames()
+            if reciever in names:
+                context = "({} --> {}) ".format(sender, reciever)
+                message = input("Message: ")
+                message = context + message
+                writeData(message, "Messages")
+                command = input("Load Messages?(y/N) or exit(e): ")
+                if command == "y":
+                    LoadMessages()
+                elif command == "N":
+                    SendMessages()
+                elif command == "e":
+                    print("**Thanks for using Revochat, hope to see you later!**") 
+                    sys.exit()
  
 
 database = firebase.FirebaseApplication("https://revochat-78efd.firebaseio.com/", None)

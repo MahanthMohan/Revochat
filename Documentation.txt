@@ -30,6 +30,8 @@ Universal Functions:
 2. Welcome() --> Welcome the User to Revochat
 3. writeData() --> Writes the data to a tag in Firebase Database
 4. readData() --> Reads the data from a tag in Firebase Database
+5. getCreds() --> To get user credentials and convert them into a list
+6. getNames() --> Deos the same function as getCreds(), but for getting the names of users
 
 Specific Functions:
 5. Register() --> Register
@@ -39,4 +41,3 @@ Specific Functions:
 
 Database:
 Uses firebase PyPI package to establish a connection to the Revochat application in Firebase Realtime Database
-
