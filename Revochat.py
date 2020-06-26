@@ -52,8 +52,8 @@ def getNames():
     names_list = list(readData('Names').items())
     names = []
     for i in range (len(names_list)):
-        username_list[i] = list(names_list[i])
-        username_list[i] = names_list[i][1]
+        names_list[i] = list(names_list[i])
+        names_list[i] = names_list[i][1]
         names.append(names_list[i][0])
     return names
 
