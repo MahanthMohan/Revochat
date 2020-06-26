@@ -47,18 +47,13 @@ def Register():
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
 
-    if username.find("@") == -1 and username.find(".com") == -1:
+    if username.find("@") == -1 or username.find(".com") == -1:
         print("**The username must be an email**" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
     
     if len(password) < 6:
         print("**Your password is too weak**")
-        print("--------------->> You will be redirected to Register Account --------->>" + "\n")
-        Register()
-    
-    if usernames.find(username) or passwords.find(password):
-        print("**Account already registered**")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
 
@@ -83,7 +78,7 @@ def login():
         username_list[i] = list(username_list[i])
         username_list[i] = username_list[i][1]
         usernames.append(username_list[i][0])
-        
+
     for n in range (0, len(password_list)):
         password_list[n] = list(password_list[n])
         password_list[n] = password_list[n][1]
@@ -99,7 +94,7 @@ def login():
             else:
                 print("Your login credentials do not match the registered credentials")
                 sys.exit()
-                
+
 
 def SendMessages(max):
     sender = str(input("Your Name: "))
