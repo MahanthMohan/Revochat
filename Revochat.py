@@ -30,6 +30,23 @@ def LoadMessages():
         print(message)
         print("---------------------------------------------------------------------------")
 
+def getCreds():
+    username_list = list(readData('Usernames').items())
+    password_list = list(readData('Passwords').items())
+    usernames = []
+    passwords = []
+    for i in range (0, len(username_list)):
+        username_list[i] = list(username_list[i])
+        username_list[i] = username_list[i][1]
+        usernames.append(username_list[i][0])
+
+    for n in range (0, len(password_list)):
+        password_list[n] = list(password_list[n])
+        password_list[n] = password_list[n][1]
+        passwords.append(password_list[n][0])
+        
+    return [usernames, passwords]
+
 # <----Universal Functions---->
 
 def Register():
@@ -51,6 +68,11 @@ def Register():
         print("**The username must be an email**" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
+
+    if username in getCreds()[0] or password in getCreds()[1]:
+        print("**Account already registered**")
+        print("--------------->> You will be redirected to Register Account --------->>" + "\n")
+        Register()
     
     if len(password) < 6:
         print("**Your password is too weak**")
@@ -70,19 +92,8 @@ def login():
     print("<<-------------------- Login Screen ---------------------->>")
     username = input("Enter your username: ")
     password = input("Enter your password: ")
-    username_list = list(readData('Usernames').items())
-    password_list = list(readData('Passwords').items())
-    usernames = []
-    passwords = []
-    for i in range (0, len(username_list)):
-        username_list[i] = list(username_list[i])
-        username_list[i] = username_list[i][1]
-        usernames.append(username_list[i][0])
-
-    for n in range (0, len(password_list)):
-        password_list[n] = list(password_list[n])
-        password_list[n] = password_list[n][1]
-        passwords.append(password_list[n][0])
+    usernames = getCreds()[0]
+    passwords = getCreds()[1]
 
     for i in range (0, len(usernames)):
         for n in range (0, len(passwords)):
