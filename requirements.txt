@@ -1,20 +1,6 @@
-Requirements:
-
-firebase>=3.0.0
- --> pip install firebase==3.0.0
-
+firebase
 python_jwt
- --> pip install python_jwt
-
 gcloud
- --> pip install gcloud
-
 pycryptodome>=3.4.3
- --> pip install pycryptodome==3.4.3
- --> Note: You may need to navigate to the python site packages folder and change the name of the folder "crypto" to "Crypto"
-
 sseclient
- -->  pip install sseclient
-
 requests_toolbelt
- --> pip install requests_toolbelt

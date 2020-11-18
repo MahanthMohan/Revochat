@@ -70,27 +70,27 @@ def Register():
     passwords = str(readData('Passwords'))
 
     if len(username) == 0 and len(password) == 0:
-        print("**Enter a valid username and password, one that is not left blank/empty**" + "\n")
+        print("** Enter a valid username and password, one that is not left blank/empty **" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
 
     if username.find("@") == -1 or username.find(".com") == -1:
-        print("**The username must be an email**" + "\n")
+        print("** The username must be an email **" + "\n")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
 
     if username in getCreds()[0] or password in getCreds()[1]:
-        print("**Account already registered**")
+        print("** Account already registered **")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
     
     if len(password) < 6:
-        print("**Your password is too weak**")
+        print("** Your password is too weak **")
         print("--------------->> You will be redirected to Register Account --------->>" + "\n")
         Register()
 
     else:
-        print("**Account successfully created**")
+        print("** Account successfully created **")
         print("You will be redirected to the login screen")
         writeData(name, "Names")
         writeData(username, "Usernames")
@@ -106,12 +106,12 @@ def login():
     passwords = getCreds()[1]
 
     if username in usernames and password in passwords:
-        print("**You have successfully logged into your account!**")
+        print("** You have successfully logged into your account! **")
         print("You can now begin sending messages to your friends!")
         LoadMessages()
         SendMessages(10) # You can add a max messages parameter to the function (Default -> 10)
     else:
-        print("**Your login credentials do not match the registered credentials**")
+        print("** Your login credentials do not match the registered credentials **")
         sys.exit()
 
 
@@ -133,7 +133,7 @@ def SendMessages(max):
                 elif command == "N":
                     SendMessages()
                 elif command == "e":
-                    print("**Thanks for using Revochat, hope to see you later!**") 
+                    print("** Thanks for using Revochat, hope to see you later! **") 
                     sys.exit()
  
 

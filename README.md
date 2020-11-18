@@ -11,6 +11,10 @@
 ## Documentation
 Please refer to Documentation.txt for the Revochat documentation
 
+## Installation
+`cd Revochat && python3 -m venv venv`
+`pip install -r requirements.txt` 
+
 ## Want to make your own?
 Look at the Map.png image for the Design flowchart, and Documentation.txt if things are not so clear
 ![Design Flowchart](Map.png)
